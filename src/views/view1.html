@@ -13,7 +13,29 @@
 </head>
 
 <body>
-
+  <!-- <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '256847328429560',
+        xfbml      : true,
+        version    : 'v3.1'
+      });
+      FB.AppEvents.logPageView();
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+     FB.getLoginStatus(function (response) {
+    statusChangeCallback(response);
+    console.log(response)
+  });
+  </script>
+   -->
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">Registrate</a>
@@ -105,12 +127,19 @@
     </div>
     <div class="row">
       <div class="col s12 ">
-        <a class="waves-effect waves-light btn  col s6 push-s3 facebook">Facebook</a>
+        <a id="idface" class="waves-effect waves-light btn  col s6 push-s3 facebook">Facebook</a>
       </div>
     </div>
   </div>
 
-
+  <!-- BOTON DE LIKE -->
+<!-- 
+  <div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div> -->
 
 
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>

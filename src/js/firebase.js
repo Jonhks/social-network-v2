@@ -25,7 +25,7 @@
       let token = result.credential.accessToken;
       console.log(token)
       let user = result.user;
-      console.loguser()
+      console.log(URLSearchParams)
       // ...
     }).catch(function (error) {
       let errorCode = error.code;

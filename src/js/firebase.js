@@ -25,7 +25,7 @@
       let token = result.credential.accessToken;
       console.log(token)
       let user = result.user;
-      console.log(URLSearchParams)
+      console.log(user)
       // ...
     }).catch(function (error) {
       let errorCode = error.code;
@@ -43,31 +43,54 @@
   $('#idgoogle').click(authGoogle);
   $('#idface').click(authFacebook);
 
+  
+  const observer = () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user)
+      if (user) {
+        // User is signed in.
+        let displayName = user.displayName;
+        let email = user.email;
+        let emailVerified = user.emailVerified;
+        let photoURL = user.photoURL;
+        let isAnonymous = user.isAnonymous;
+        let uid = user.uid;
+        let providerData = user.providerData;
+        console.log("este es el usuario actual" + email)
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+      }
+    });
+  }
+  
+  observer();
 
-//   window.fbAsyncInit = function () {
-//     FB.init({
-//       appId: '{your-app-id}',
-//       cookie: true,
-//       xfbml: true,
-//       version: '{api-version}'
-//     });
 
-//     FB.AppEvents.logPageView();
+// obtener al ususario
+
+let user = firebase.auth().currentUser;
+
+if (user != null) {
+  user.providerData.forEach(function (profile) {
+    console.log("Sign-in provider: " + profile.providerId);
+    console.log("  Provider-specific UID: " + profile.uid);
+    console.log("  Name: " + profile.displayName);
+    console.log("  Email: " + profile.email);
+    console.log("  Photo URL: " + profile.photoURL);
+  });
+}
 
 
-//   (function (d, s, id) {
-//     var js, fjs = d.getElementsByTagName(s)[0];
-//     if (d.getElementById(id)) {
-//       return;
-//     }
-//     js = d.createElement(s);
-//     js.id = id;
-//     js.src = "https://connect.facebook.net/en_US/sdk.js";
-//     fjs.parentNode.insertBefore(js, fjs);
-//   }(document, 'script', 'facebook-jssdk'));
+// Para update de usuario
 
-//   FB.getLoginStatus(function (response) {
-//     statusChangeCallback(response);
-//     console.log(response)
-//   });
-// };
+
+// user.updateProfile({
+//   displayName: "Jane Q. User",
+//   photoURL: "https://example.com/jane-q-user/profile.jpg"
+// }).then(function() {
+//   // Update successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });

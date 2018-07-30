@@ -1,12 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <title>Red Social</title>
 </head>
-<body>
-  <h1>Hola</h1>
-</body>
+  <body>
+    <div class="navbar-fixed">
+      <nav class="nav-extended background-black">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+            </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
+            <li><div><img  class="imagen-usuario imagen-perfil circle" src="https://pbs.twimg.com/profile_images/883322378318729216/z2xz6wn8_400x400.jpg"></div></li>
+            <li><span class="white-text name"></li>
+            <li><a class="action-modal modal-trigger" href="#modal1">Mi perfil</a></li>
+            <!-- <li><a class="subheader">Subheader</a></li> -->
+            <li class="log-out"><a class="waves-effect" href="#!">log out</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <ul id="mobile-demo" class="sidenav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img src="https://diariopresenterm.blob.core.windows.net.optimalcdn.com/images/2017/07/28/prpr_38_biker01-focus-0-0-1140-570.jpg">
+          </div>
+          <a href="#user"><img id="imagen-usuario" class="imagen-usuario circle" src="https://pbs.twimg.com/profile_images/883322378318729216/z2xz6wn8_400x400.jpg"></a>
+          <a href="#name"><span class="white-text name" id="nombre"></span></a>
+          <a href="#email"><span class="white-text email" id="correo"></span></a>
+        </div>
+      </li>
+      <!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
+      <li><a id="action-modal" class="action-modal waves-effect waves-light modal-trigger" href="#modal1"> Mi perfil</a></li>
+      <li><div class="divider"></div></li>
+      <!-- <li><a class="subheader">Subheader</a></li> -->
+      <li class="log-out" id="logout"><a class="waves-effect waves-light">log out</a></li>
+    </ul>
+    <div class="row text-area">
+      <form id="crear-post" class="col s12" width= "10%">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="mensaje" class="materialize-textarea" data-length="140"></textarea>
+            <label for="mensaje">Mensaje</label>
+          </div>
+          <!-- <div class="file-field input-field">
+            <div class="btn">
+              <span><i class="material-icons">add_a_photo</i></span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div> -->
+
+          <div class="col s6">
+            <button id="btn-publicar" class="btn waves-effect waves-light background-black" type="submit" name="action" disabled>Publicar
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <section id="container-posts"></section>
+
+      <!-- Modal Trigger -->
+  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+<div id="para-modal"></div>
+  <!-- Modal Structure -->
+  <!-- <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div> -->
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+
+  </body>
 </html>

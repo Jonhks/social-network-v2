@@ -6,3 +6,51 @@
   background-color: #074590;
 }
 
+nav{
+  background-color: black;
+}
+
+.start{
+  margin-top: 5%;
+  background-color: rgb(152, 142, 142);
+
+}
+
+.centrar{
+  margin-top: 5%;
+}
+
+#nameUser{
+  text-align: right;
+}
+
+.background-black {
+  background-color: black
+}
+
+.fz-10 {
+  font-size: 10px;
+}
+
+.fz-16 {
+  font-size: 16px;
+}
+
+.c-dorado {
+  color: #ffab40;
+}
+
+.back-img{
+  background-image: url('')
+}
+
+.imagen-perfil {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.text-area {
+  margin-top: 25px;
+}

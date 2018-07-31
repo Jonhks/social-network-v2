@@ -26,6 +26,8 @@
       console.log(token)
       let user = result.user;
       console.log(user)
+      localStorage.setItem('resultado', JSON.stringify(user))
+      location.href = "../views/muro.html"
       // ...
     }).catch(function (error) {
       let errorCode = error.code;
@@ -46,7 +48,6 @@
   
   const observer = () => {
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log(user)
       if (user) {
         // User is signed in.
         let displayName = user.displayName;
@@ -56,11 +57,11 @@
         let isAnonymous = user.isAnonymous;
         let uid = user.uid;
         let providerData = user.providerData;
-        console.log("este es el usuario actual" + email)
         // ...
       } else {
         // User is signed out.
         // ...
+
       }
     });
   }

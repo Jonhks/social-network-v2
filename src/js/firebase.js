@@ -27,7 +27,6 @@ const autentication = (provider) => {
     console.log(user);
     localStorage.setItem('resultado', JSON.stringify(user));
     // location.href = '../views/muro.html';
-    location.assign('../views/muro.html');
     // ...
   }).catch(function(error) {
     let errorCode = error.code;
@@ -58,11 +57,14 @@ const observer = () => {
       let isAnonymous = user.isAnonymous;
       let uid = user.uid;
       let providerData = user.providerData;
+      console.log('hay usuario activo');
+    // location.assign('../views/muro.html');
+
       // ...
     } else {
       // User is signed out.
       // ...
-
+      console.log('no hay usuario activo');
     }
   });
 };

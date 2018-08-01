@@ -26,7 +26,8 @@ const autentication = (provider) => {
     let user = result.user;
     console.log(user);
     localStorage.setItem('resultado', JSON.stringify(user));
-    location.href = '../views/muro.html';
+    // location.href = '../views/muro.html';
+    location.assign('../views/muro.html');
     // ...
   }).catch(function(error) {
     let errorCode = error.code;
@@ -39,6 +40,7 @@ const autentication = (provider) => {
     console.log(credential);
     // ...
   });
+  return user; 
 };
 
 $('#idgoogle').click(authGoogle);

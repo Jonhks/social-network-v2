@@ -53,7 +53,7 @@ const observer = () => {
     if (user) {
       let url = window.location.pathname;
       console.log('hay usuario activo');
-      if (url === urlLogin || url === '/src/views/view1.html') {
+      if (url === urlLogin || url === '/social-network-v2/src/views/view1.html') {
         location.assign('../views/muro.html');
       }
     } 

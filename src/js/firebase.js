@@ -20,7 +20,7 @@ const authFacebook = () => {
 };
 
 const autentication = (provider) => {
-  firebase.auth().signInWithPopup(provider).then(function(result) {
+  firebase.auth().signInWithPopup(provider).then(function (result) {
     let token = result.credential.accessToken;
     console.log(token);
     let user = result.user;
@@ -28,7 +28,7 @@ const autentication = (provider) => {
     localStorage.setItem('resultado', JSON.stringify(user));
     // location.href = '../views/muro.html';
     // ...
-  }).catch(function(error) {
+  }).catch(function (error) {
     let errorCode = error.code;
     console.log(errorCode);
     let errorMessage = error.message;
@@ -39,36 +39,27 @@ const autentication = (provider) => {
     console.log(credential);
     // ...
   });
-  return user; 
+  return user;
 };
 
 $('#idgoogle').click(authGoogle);
 $('#idface').click(authFacebook);
+let urlLogin = '/src/views/view1';
+let urlMuro = '/src/views/muro';
 
-  
+
 const observer = () => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      // User is signed in.
-      let displayName = user.displayName;
-      let email = user.email;
-      let emailVerified = user.emailVerified;
-      let photoURL = user.photoURL;
-      let isAnonymous = user.isAnonymous;
-      let uid = user.uid;
-      let providerData = user.providerData;
+      let url = window.location.pathname;
       console.log('hay usuario activo');
-    // location.assign('../views/muro.html');
-
-      // ...
-    } else {
-      // User is signed out.
-      // ...
-      console.log('no hay usuario activo');
-    }
+      if (url === urlLogin || url === '/src/views/view1.html') {
+        location.assign('../views/muro.html');
+      }
+    } 
   });
 };
-  
+
 observer();
 
 
@@ -77,7 +68,7 @@ observer();
 let user = firebase.auth().currentUser;
 
 if (user !== null) {
-  user.providerData.forEach(function(profile) {
+  user.providerData.forEach(function (profile) {
     console.log('Sign-in provider: ' + profile.providerId);
     console.log('  Provider-specific UID: ' + profile.uid);
     console.log('  Name: ' + profile.displayName);

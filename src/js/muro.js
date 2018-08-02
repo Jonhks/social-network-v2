@@ -3,20 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
   const instances = M.Sidenav.init(elems);
 
   // eventValidationTextArea();
-  // mostrarPost();
-  // printUserResult(userReturn);
+  // changeImg();
+  printUserResult();
 });
 const post = document.getElementById('crear-post');
 const botonLogout = document.getElementById('logout');
 const publicar = document.getElementById('btn-publicar');
 const userReturn = JSON.parse(localStorage.getItem('resultado'));
 const containerPost = document.getElementById('container-posts');
+const textArea = document.getElementById('mensaje');
 
 botonLogout.addEventListener('click', event => {
   firebase.auth().signOut().then(function () {
     console.log('El usuario ha salido');
-    // location.href = '../views/view1.html';
-
+    location.assign('../views/view1.html');
     // Sign-out successful.
   }).catch(function (error) {
     // An error happened.
@@ -30,7 +30,6 @@ let hora = new Date().getTime();
 let contadorId = 0;
 
 const sendMessage = () => {
-  let textArea = document.getElementById('mensaje');
   event.preventDefault();
   let date = `${new Date()}`;
   let userToPrint = {
@@ -49,7 +48,7 @@ const sendMessage = () => {
   }
   database.push(userToPrint);
   contadorId++;
-  textArea.value = ' ';
+  textArea.value = '';
 }
 
 publicar.addEventListener('click', sendMessage);
@@ -61,9 +60,10 @@ const createStructure = (messages) => {
   <div class="col s12">
     <div class="card black">
       <div class="card-content white-text">
-        <span class="card-title">${messages.nombre}</span>
-        <span class="fz-10 c-dorado">${messages.mensaje.fecha}</span>
+        <span class="card-title namemes"><i>${messages.nombre}</i></span>
         <p class="fz-16">${messages.mensaje.textMessage}</p>
+        <hr>
+        <p class="fz-10 c-dorado">${messages.mensaje.fecha}</p>
         </div>
         <div class="card-action">
           <a href="#" data-editar="${messages.mensaje.idPost}">Editar</a>
@@ -96,8 +96,52 @@ const readDB = () => {
 
 readDB();
 
+let btnsModal = document.querySelectorAll('.action-modal');
+// let modalButton = document.getElementById('modal');
+runModal = () => {
+  let paraModal = document.getElementById('para-modal');
+  console.log('hola');
+  let newModal = `<div id="modal1" class="modal bodynew">
+  <div class="modal-content">
+  <a id="imagen-usuario" href="#user"><img class="circle" src="${userReturn.photoURL}" width="50%"></a>
+    <h5 class="whithe"> ${userReturn.displayName}</h5class>
+    <p class="whithe">  ${userReturn.email}</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+  </div>
+</div>`;
+  paraModal.innerHTML = newModal;
+  $('.modal').modal();
+};
+for (var i = 0; i < btnsModal.length; i++) {
+  btnsModal[i].addEventListener('click', runModal);
+}
 
-// validarDatosMensaje: (event) => {
+const printUserResult = () => {
+  let printName = document.querySelectorAll('.name');
+  let printEmail = document.getElementById('correo');
+  let printImage = document.getElementById('imagen-usuario2');
+  let nameResult = userReturn.displayName;
+  let emailResult = userReturn.email;
+  let imageReturn = userReturn.photoURL;
+
+  for (let i = 0; i < printName.length; i++) {
+    printName[i].innerHTML = nameResult;
+    printImage.src = imageReturn;
+  }
+  printEmail.innerHTML = emailResult;
+};
+
+window.onload = changeImg = () => {
+  let printImageDesktop = document.getElementById('imagen-usuario');
+  let imageReturnDesktop = userReturn.photoURL;
+  printImageDesktop.src = imageReturnDesktop;
+
+
+}
+
+// validarDatosMensaje = (event) => {
 //   const targetEvent = event.target.value.trim();
 //   if (targetEvent.length > 0 && targetEvent.length < 141) {
 //     return true;
@@ -106,7 +150,17 @@ readDB();
 //   }
 // };
 
-
 // error = () => {
 //   alert('rellena todos los campos');
 // };
+
+const botonValidator = () => {
+  let vacio = mensaje.value.trim();
+  if (vacio.length > 0 && vacio.length < 141) {
+    publicar.disabled = false;
+  }else{
+    publicar.disabled = true;
+  } 
+}
+
+mensaje.addEventListener('keyup', botonValidator)
